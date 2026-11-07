@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE_URL, business, addressLine } from "@/content/business";
+import { ALLOW_INDEXING, SITE_URL, business, addressLine } from "@/content/business";
 import type { Faq } from "@/content/offerings";
 
 export const nav = [
@@ -34,7 +34,7 @@ export function pageMetadata({ title, description, path }: PageMetaInput): Metad
       locale: "en_GB",
     },
     twitter: { card: "summary_large_image", title, description },
-    robots: { index: true, follow: true },
+    robots: ALLOW_INDEXING ? { index: true, follow: true } : { index: false, follow: false },
   };
 }
 

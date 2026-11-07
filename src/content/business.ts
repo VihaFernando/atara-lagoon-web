@@ -23,6 +23,12 @@ export interface Fact<T> {
   note?: string;
 }
 
+/**
+ * Search-engine indexing is OFF unless NEXT_PUBLIC_ALLOW_INDEXING=true.
+ * Keep it off for demos and staging; turn it on only for the real production launch.
+ */
+export const ALLOW_INDEXING = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://ataralagoon.com").replace(/\/$/, "");
 
 export const business = {

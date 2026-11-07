@@ -10,6 +10,8 @@
   # Canonical origin used for canonical URLs, sitemap, Open Graph and JSON-LD.
   # Change this to https://ataralagoon.com when the real domain goes live.
   NEXT_PUBLIC_SITE_URL = "https://ataralagoon.trycodemaxed.com"
+  # Demo mode: noindex + robots.txt disallow. Set to "true" (and change SITE_URL) at launch.
+  NEXT_PUBLIC_ALLOW_INDEXING = "false"
 
 # Optional email delivery for the booking enquiry form. Set these in
 # Netlify > Site configuration > Environment variables (never commit them):

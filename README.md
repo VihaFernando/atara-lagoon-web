@@ -46,6 +46,7 @@ Hero and header entrance animations are pure CSS, so they don't delay LCP. All m
 | Variable | Required | Purpose |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | yes (prod) | Canonical origin, e.g. `https://ataralagoon.com` |
+| `NEXT_PUBLIC_ALLOW_INDEXING` | launch | `true` lets search engines index the site. Anything else (default) sends noindex, disallows robots.txt and empties the sitemap, so demos stay out of Google |
 | `RESEND_API_KEY` | optional | Enables email delivery of enquiries via Resend |
 | `ENQUIRY_TO_EMAIL` | with Resend | Inbox that receives enquiries |
 | `ENQUIRY_FROM_EMAIL` | with Resend | Verified sender, e.g. `Atara Lagoon <enquiries@ataralagoon.com>` |

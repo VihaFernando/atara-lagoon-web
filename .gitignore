@@ -7,3 +7,6 @@ out
 next-env.d.ts
 .next-prod
 .next-*
+
+# Local Netlify folder
+.netlify

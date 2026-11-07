@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+
 const nextConfig: NextConfig = {
   // Allows a separate production build folder (e.g. for local audits while `next dev` runs).
   distDir: process.env.NEXT_DIST_DIR || ".next",
@@ -14,6 +16,7 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          ...(allowIndexing ? [] : [{ key: "X-Robots-Tag", value: "noindex, nofollow" }]),
         ],
       },
       {

@@ -5,7 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/ui/primitives";
-import { SITE_URL, business } from "@/content/business";
+import { ALLOW_INDEXING, SITE_URL, business } from "@/content/business";
 import { graph, hotelSchema, websiteSchema } from "@/lib/seo";
 
 const serif = Cormorant_Garamond({
@@ -26,7 +26,9 @@ export const metadata: Metadata = {
   description: business.description,
   applicationName: business.name,
   formatDetection: { telephone: false },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
+  robots: ALLOW_INDEXING
+    ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } }
+    : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
