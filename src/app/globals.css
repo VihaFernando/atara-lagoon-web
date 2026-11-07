@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lagoon: #174c46;
+  --color-lagoon-deep: #0f3532;
+  --color-forest: #244d3f;
+  --color-ivory: #f7f4ec;
+  --color-sand: #e9dfcc;
+  --color-sand-deep: #d9cbb0;
+  --color-sage: #a5b4a0;
+  --color-charcoal: #252a27;
+  --color-champagne: #b99a69;
+  --color-champagne-deep: #8a6f45;
+  --color-champagne-light: #e6c47a; /* warm golden highlight, used in the hero */
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-manrope), "Manrope", system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--color-sage); color: var(--color-charcoal); }
+  :focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) { .container-x { padding-inline: 2.5rem; } }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-soft);
+  }
+  .link-underline:hover, .link-underline:focus-visible { background-size: 100% 1px; }
+
+  .rule { height: 1px; background: color-mix(in srgb, currentColor 18%, transparent); }
+
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-charcoal) 25%, transparent);
+    padding: 0.7rem 0;
+    font-size: 1rem;
+    border-radius: 0;
+    transition: border-color 0.3s;
+  }
+  .field:focus { outline: none; border-bottom-color: var(--color-lagoon); }
+  .field[aria-invalid="true"] { border-bottom-color: #a1442f; }
+}
+
+@keyframes scrollcue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* Above-the-fold entrances run in CSS so they never wait for hydration (LCP-safe). */
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes line-up { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes drop { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: none; } }
+.anim-rise { animation: rise 1s var(--ease-soft) backwards; animation-delay: var(--d, 0s); }
+.anim-line { display: block; animation: line-up 1.15s var(--ease-soft) backwards; animation-delay: var(--d, 0s); }
+.anim-fade { animation: fade 1.6s var(--ease-soft) backwards; animation-delay: var(--d, 0s); }
+.anim-drop { animation: drop 0.9s var(--ease-soft) 0.2s backwards; }
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise, .anim-line, .anim-fade, .anim-drop { animation: none; }
+}

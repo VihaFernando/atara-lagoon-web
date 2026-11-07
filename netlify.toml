@@ -1,0 +1,19 @@
+# Netlify configuration for the Atara Lagoon website (Next.js App Router).
+# Netlify detects Next.js and installs its runtime automatically, so no plugin entry is needed.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Canonical origin used for canonical URLs, sitemap, Open Graph and JSON-LD.
+  # Change this to https://ataralagoon.com when the real domain goes live.
+  NEXT_PUBLIC_SITE_URL = "https://ataralagoon.trycodemaxed.com"
+
+# Optional email delivery for the booking enquiry form. Set these in
+# Netlify > Site configuration > Environment variables (never commit them):
+#   RESEND_API_KEY, ENQUIRY_TO_EMAIL, ENQUIRY_FROM_EMAIL
+# Without them the form still works and hands the enquiry off to WhatsApp / email.
+
+# Security headers are set in next.config.ts. Photos are cached there too.
